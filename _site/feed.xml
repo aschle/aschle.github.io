@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>alexa.sc</title>
+    <description></description>
+    <link>alexa.sc/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sun, 22 Oct 2017 13:02:48 +0200</pubDate>
+    <lastBuildDate>Sun, 22 Oct 2017 13:02:48 +0200</lastBuildDate>
+    <generator>Jekyll v3.0.2</generator>
+    
+      <item>
+        <title>Responsive website</title>
+        <description></description>
+        <pubDate>Thu, 01 Jun 2017 00:00:00 +0200</pubDate>
+        <link>alexa.sc/webprogramming/2017/06/01/ibbau.html</link>
+        <guid isPermaLink="true">alexa.sc/webprogramming/2017/06/01/ibbau.html</guid>
+        
+        
+        <category>Webprogramming</category>
+        
+      </item>
+    
+      <item>
+        <title>LED lamp controled by an arduino</title>
+        <description></description>
+        <pubDate>Thu, 01 Jun 2017 00:00:00 +0200</pubDate>
+        <link>alexa.sc/productdesign/2017/06/01/arduino.html</link>
+        <guid isPermaLink="true">alexa.sc/productdesign/2017/06/01/arduino.html</guid>
+        
+        
+        <category>Productdesign</category>
+        
+      </item>
+    
+      <item>
+        <title>Wooden labels</title>
+        <description></description>
+        <pubDate>Mon, 01 May 2017 00:00:00 +0200</pubDate>
+        <link>alexa.sc/design/2017/05/01/ust.html</link>
+        <guid isPermaLink="true">alexa.sc/design/2017/05/01/ust.html</guid>
+        
+        
+        <category>Design</category>
+        
+      </item>
+    
+      <item>
+        <title>Heart-shaped LED post box</title>
+        <description></description>
+        <pubDate>Sat, 01 Apr 2017 00:00:00 +0200</pubDate>
+        <link>alexa.sc/productdesign/2017/04/01/heart.html</link>
+        <guid isPermaLink="true">alexa.sc/productdesign/2017/04/01/heart.html</guid>
+        
+        
+        <category>Productdesign</category>
+        
+      </item>
+    
+      <item>
+        <title>Responsive website, mobile first</title>
+        <description></description>
+        <pubDate>Tue, 01 Mar 2016 00:00:00 +0100</pubDate>
+        <link>alexa.sc/interviews/2016/03/01/interviews.html</link>
+        <guid isPermaLink="true">alexa.sc/interviews/2016/03/01/interviews.html</guid>
+        
+        
+        <category>Interviews</category>
+        
+      </item>
+    
+      <item>
+        <title>Responsive website, mobile first</title>
+        <description></description>
+        <pubDate>Tue, 01 Mar 2016 00:00:00 +0100</pubDate>
+        <link>alexa.sc/webprogramming/2016/03/01/womak.html</link>
+        <guid isPermaLink="true">alexa.sc/webprogramming/2016/03/01/womak.html</guid>
+        
+        
+        <category>Webprogramming</category>
+        
+      </item>
+    
+  </channel>
+</rss>

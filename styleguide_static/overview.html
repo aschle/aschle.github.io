@@ -1,0 +1,88 @@
+<p class="sg">This is a living styleguide, which is based upon <a href="https://github.com/SC5/sc5-styleguide" class="sg">sc5 styleguide</a>. The styleguide is generated dynamically using <a href="http://warpspire.com/kss/" class="sg">KSS</a> notation within LESS files and is written with markdown.</p>
+<p class="sg">neonion is build with <a href="http://getbootstrap.com" class="sg">Bootstrap v3.3.5</a>.</p>
+<h2 class="sg" name="installing-less-and-compiling-to-css">Installing LESS and compiling to CSS</h2>
+<p class="sg">Bootstrap is build with <a href="www.lesscss.de" class="sg">LESS</a>.</p>
+<p class="sg">Install LESS with <strong><code>npm</code></strong> (node package manager).</p>
+<pre class="sg"><code>      $ npm install -g less
+</code></pre>
+<p class="sg">For compiliation run the following:</p>
+<pre class="sg"><code>      $ lessc neonion/static/less/my-bootstrap-theme.less neonion/static/main.css
+</code></pre>
+<p class="sg">If you want to build it automatically here is a <strong>shell script</strong>. Name it whatever you like and make it executable with <code>chmod +x filename.sh</code>.</p>
+<pre class="sg"><code>      while inotifywait -r neonion/static/less/* &amp;
+      do
+        lessc neonion/static/less/my-bootstrap-theme.less neonion/static/main.css
+      done
+</code></pre>
+<p class="sg">This is all you need to compile the css.</p>
+<h2 class="sg" name="running-the-styleguide-locally-as-a-server">Running the Styleguide locally as a server</h2>
+<p class="sg">Install <a href="https://github.com/SC5/sc5-styleguide" class="sg">sc5 styleguide</a> first:</p>
+<pre class="sg"><code>      $ npm install sc5-styleguide --save-dev
+</code></pre>
+<p class="sg">You can run it as a command line tool but using gulp is better, because of ... a lot. Install gulp first:</p>
+<pre class="sg"><code>      $ npm install gulp
+</code></pre>
+<p class="sg">Also install <code>gulp-less</code> and <code>gulp-concat</code> first:</p>
+<pre class="sg"><code>      $ npm install gulp-less
+      $ npm install gulp-concat
+</code></pre>
+<p class="sg">Here is the code for running the styleguide server:</p>
+<pre class="sg"><code>var gulp = require(&apos;gulp&apos;);
+var styleguide = require(&apos;sc5-styleguide&apos;);
+var less = require(&apos;gulp-less&apos;);
+var outputPath = &apos;styleguide&apos;;
+var concat = require(&quot;gulp-concat&quot;);
+
+gulp.task(&apos;styleguide:generate&apos;, function() {
+  return gulp.src(&apos;less/**/*.less&apos;)
+    .pipe(styleguide.generate({
+        title: &apos;Styleguide for neonion&apos;,
+        server: true,
+        rootPath: outputPath,
+        overviewPath: &apos;less/styleguide.md&apos;,
+        commonClass: &apos;myfont&apos;,
+        extraHead: [
+          &apos;&lt;script src=&quot;/js/jquery.min.js&quot;&gt;&lt;/script&gt;&apos;,
+          &apos;&lt;script src=&quot;/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;&apos;
+        ],
+        disableEncapsulation: true
+      }))
+    .pipe(gulp.dest(outputPath));
+});
+
+gulp.task(&apos;styleguide:applystyles&apos;, function() {
+  return gulp.src([
+    &apos;less/my-bootstrap-theme.less&apos;,
+    &apos;utils/additional.less&apos;
+    ])
+    .pipe(concat(&apos;all.less&apos;))
+    .pipe(less({
+      errLogToConsole: true
+    }))
+    .pipe(styleguide.applyStyles())
+    .pipe(gulp.dest(outputPath));
+});
+
+gulp.task(&apos;styleguide:static&apos;, function() {
+  gulp.src(&apos;fonts/**&apos;)
+    .pipe(gulp.dest(outputPath + &apos;/fonts&apos;));
+  gulp.src(&apos;js/jquery.min.js&apos;)
+    .pipe(gulp.dest(outputPath + &apos;/js&apos;));
+  gulp.src(&apos;js/bootstrap.min.js&apos;)
+    .pipe(gulp.dest(outputPath + &apos;/js&apos;)); 
+});
+
+gulp.task(&apos;watch&apos;, function() {
+  // Start watching changes and update styleguide whenever changes are detected
+  // Styleguide automatically detects existing server instance
+  gulp.watch([&apos;less/**/*.less&apos;], [&apos;styleguide&apos;]);
+});
+
+gulp.task(&apos;styleguide&apos;, [
+  &apos;styleguide:static&apos;,
+  &apos;styleguide:generate&apos;,
+  &apos;styleguide:applystyles&apos;
+]);
+]);
+</code></pre>
+<p class="sg">Browse to <code>http://localhost:3000/</code> and everything should be fine.</p>

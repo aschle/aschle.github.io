@@ -1,0 +1,104 @@
+<!-- Portfolio Modals -->
+{% for post in site.posts %}
+<div class="portfolio-modal modal fade" id="{{ post.modalID }}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-1">
+                    <div class="modal-body">
+                        <h2>{{ post.title }}</h2>
+                        <h3>{{ post.category }}</h3>
+
+                        <ul class="list-inline item-details">
+                            <li>Project Duration:
+                                {% if post.duration == 1 %}
+                                <strong>{{ post.start | date: "%B %Y" }}</strong>
+                                {% else %}
+                                <strong>{{ post.start | date: "%B %Y" }} - {{ post.end | date: "%B %Y" }}</strong>
+                                {% endif %}
+                            </li>
+                            <li>Time:
+                                <strong>{{ post.hours }}</strong>
+                            </li>
+                            <li>Client:
+                                <strong>{{ post.client }}</strong></li>
+                            <li>Workplace:
+                                <strong>{{ post.workplace }}</strong>
+                            </li>
+                        </ul>
+
+                        {{ post.content }}
+
+                        {% for i in post.imgs %}
+                        <p>
+                        <img src="{{ site.baseurl }}/{{ i.url }}" class="img-responsive img-centered" alt="{{ i.alt }}">
+                        <figcaption class="small">{{ i .caption }}</figcaption>
+                        </p>
+                        {% endfor %}
+                        
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                    </div>
+                </div>
+                <div class="text-left col-lg-3 small">
+                    <h5>Tools &amp; Methods</h5>
+                    <ul class="list-inline text-left">
+                    {% for t in post.tags %}
+                    <li class="item-tags">{{ t }}</li>
+                    {% endfor %}
+                    </ul>
+                    {% if post.orga.size %}
+                   <h5>Organisation</h5>
+                    <ul class="list-inline text-left">
+                        {% for t in post.orga %}
+                        <li class="item-tags">{{ t }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                    {% if post.links.size %}
+                        <h5>External links</h5>
+                        <ul class="list-unstyled">
+                        {% for l in post.links %}
+                            <li>
+                                <a href="{{ l.link }}">{{ l.text }}</a>
+                            </li>
+                        {% endfor %}
+                        </ul>                  
+                    {% endif %}
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<!-- One Modal for Impressum -->
+<div class="portfolio-modal modal fade" id="impressumModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-content">
+    <div class="close-modal" data-dismiss="modal">
+      <div class="lr">
+          <div class="rl">
+          </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <div class="modal-body">
+            <h2>/ imprint</h2>
+            {% include impressum.html %}
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
